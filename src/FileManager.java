@@ -1,5 +1,7 @@
+import java.util.List;
 
-interface FileManager {
-	public User read();
-	public void write(User user);
+interface FileManager<T> {
+	public List<T> read();
+	public void insert(T user);
+	public void clean();
 }
