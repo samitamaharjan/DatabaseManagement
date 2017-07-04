@@ -1,6 +1,7 @@
 package com.project.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Author extends Person implements Serializable {
 
@@ -10,7 +11,7 @@ public class Author extends Person implements Serializable {
 	private String bio;
 
 	public Author(String firstName, String lastName, String phone, Address address, boolean credential, String bio) {
-		super(firstName, lastName, phone, address);
+		super(UUID.randomUUID().toString(), firstName, lastName, phone, address);
 		this.credential = credential;
 		this.bio = bio;
 	}

@@ -1,21 +1,22 @@
 package com.project.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
-public class Address implements Serializable {
+import com.project.interfaces.PrimaryKey;
+
+public class Address implements Serializable, PrimaryKey {
 
 	private static final long serialVersionUID = -1337645756589619149L;
-
+	
+	private String id;
 	private String street;
 	private String city;
 	private String zip;
 	private String state;
 
-	public Address() {
-
-	}
-
 	public Address(String street, String city, String zip, String state) {
+		this.id = UUID.randomUUID().toString();
 		this.street = street;
 		this.city = city;
 		this.zip = zip;
@@ -37,5 +38,14 @@ public class Address implements Serializable {
 
 	public String getState() {
 		return state;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public String getPrimaryKey() {
+		return id;
 	}
 }

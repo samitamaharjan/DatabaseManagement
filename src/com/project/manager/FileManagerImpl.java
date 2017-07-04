@@ -6,7 +6,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManagerImpl<T> implements FileManager<T> {
+import com.project.interfaces.PrimaryKey;
+
+public class FileManagerImpl<T extends PrimaryKey> implements FileManager<T> {
 	
 	private String filename;
 	
@@ -16,7 +18,7 @@ public class FileManagerImpl<T> implements FileManager<T> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> read() {
+	public List<T> findAll() {
 		List<T> list = new ArrayList<>();
 
 		try (ObjectInputStream ois
@@ -27,10 +29,22 @@ public class FileManagerImpl<T> implements FileManager<T> {
 		}
 		return list;
 	}
+	
+	@Override
+	public T findByPrimaryKey(String id) {
+		List<T> list = findAll();
+		
+		for (T t : list) {
+			if (t.getPrimaryKey().equals(id)) {
+				return t;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void insert(T t) {
-		List<T> list = read();
+		List<T> list = findAll();
 		list.add(t);
 		
 		try (ObjectOutputStream oos =

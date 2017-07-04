@@ -2,7 +2,9 @@ package com.project.model;
 
 import java.io.Serializable;
 
-public class Book implements Serializable {
+import com.project.interfaces.PrimaryKey;
+
+public class Book implements Serializable, PrimaryKey {
 	
 	private static final long serialVersionUID = 5720335497921250897L;
 
@@ -11,19 +13,19 @@ public class Book implements Serializable {
 		Standard, Special
 	}
 
-	private int ISBN;
+	private String ISBN;
 	private String title;
 	private boolean available;
 	Author author;
 
-	public Book(int ISBN, String title, boolean available, Author author) {
+	public Book(String ISBN, String title, boolean available, Author author) {
 		this.ISBN = ISBN;
 		this.title = title;
 		this.available = available;
 		this.author = author;
 	}
 
-	public int getISBN() {
+	public String getISBN() {
 		return ISBN;
 	}
 
@@ -37,5 +39,10 @@ public class Book implements Serializable {
 
 	public Author getAuthor() {
 		return author;
+	}
+
+	@Override
+	public String getPrimaryKey() {
+		return ISBN;
 	}
 }

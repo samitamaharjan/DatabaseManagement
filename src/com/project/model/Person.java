@@ -2,20 +2,20 @@ package com.project.model;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
+import com.project.interfaces.PrimaryKey;
+
+public class Person implements Serializable, PrimaryKey {
 	
 	private static final long serialVersionUID = -1161938047579074731L;
 	
+	private String memberId;
 	private String firstName;
 	private String lastName;
 	private String phone;
 	private Address address;
 	
-	public Person() {
-		
-	}
-		
-	public Person(String firstName, String lastName, String phone, Address address) {
+	public Person(String memberId, String firstName, String lastName, String phone, Address address) {
+		this.memberId = memberId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
@@ -36,5 +36,14 @@ public class Person implements Serializable {
 
 	public Address getAddress() {
 		return address;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	@Override
+	public String getPrimaryKey() {
+		return memberId;
 	}
 }

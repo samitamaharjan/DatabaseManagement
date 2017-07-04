@@ -12,11 +12,11 @@ public class Main {
 		Address add1 = new Address("1000N 4th St.", "Fairfield", "52557", "IA");
 		addrManager.insert(add1);
 		
-		List<Address> addresses = addrManager.read();
+		List<Address> addresses = addrManager.findAll();
 		
 		for (Address addr : addresses) {
 			System.out.printf("%-15s %-15s %-10s %-5s%n",
-					addr.getStreet(), addr.getCity(), addr.getZip(), addr.getState());
+				addr.getStreet(), addr.getCity(), addr.getZip(), addr.getState());
 		}
 	}
 }
