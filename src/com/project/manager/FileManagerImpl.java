@@ -1,3 +1,4 @@
+package com.project.manager;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -13,6 +14,7 @@ public class FileManagerImpl<T> implements FileManager<T> {
 		this.filename = filename;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> read() {
 		List<T> list = new ArrayList<>();

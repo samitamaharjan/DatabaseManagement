@@ -1,33 +1,22 @@
 import java.util.List;
 
+import com.project.manager.FileManager;
+import com.project.manager.FileManagerImpl;
+import com.project.model.Address;
+
 public class Main {
 
 	public static void main(String[] args) {
-		FileManager<User> userManager = new FileManagerImpl<>("user");
+		FileManager<Address> addrManager = new FileManagerImpl<>("address");
+		addrManager.clean();
+		Address add1 = new Address("1000N 4th St.", "Fairfield", "52557", "IA");
+		addrManager.insert(add1);
 		
-		userManager.clean();
-		User james = new User(1, "James");
-		User samita = new User(2, "Samita");
-		userManager.insert(james);
-		userManager.insert(samita);
+		List<Address> addresses = addrManager.read();
 		
-		List<User> users = userManager.read();
-		
-		for(User u : users) {
-			System.out.println(u.getId() + "\t" + u.getName());
-		}
-		
-		FileManager<Book> bookManager = new FileManagerImpl<>("book");
-		bookManager.clean();
-		Book b1 = new Book("125", "Java");
-		Book b2 = new Book("252", "Hadoop");
-		bookManager.insert(b1);	
-		bookManager.insert(b2);
-		
-		List<Book> books = bookManager.read();
-		
-		for(Book b : books) {
-			System.out.println(b.getIsbn() + "\t" + b.getName());
+		for (Address addr : addresses) {
+			System.out.printf("%-15s %-15s %-10s %-5s%n",
+					addr.getStreet(), addr.getCity(), addr.getZip(), addr.getState());
 		}
 	}
 }
